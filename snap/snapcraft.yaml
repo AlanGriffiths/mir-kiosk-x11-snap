@@ -1,7 +1,7 @@
 name: mir-kiosk-x11
 summary: Boilerplate for using mir_kiosk_x11
 description: Boilerplate for using mir_kiosk_x11 (for use as a "stage-snap")
-base: core20
+base: core18
 confinement: strict
 grade: stable
 adopt-info: mir-kiosk-x11
