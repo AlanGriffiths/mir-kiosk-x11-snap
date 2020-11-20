@@ -37,7 +37,8 @@ parts:
     stage-packages:
       - inotify-tools
       - libmiral4
-      - mir-platform-graphics-wayland18
+      - try: [mir-platform-graphics-wayland]  # Mir 2.2+
+      - else: [mir-platform-graphics-wayland18] # Mir < 2.2
       - dmz-cursor-theme
       - fonts-freefont-ttf
       - xwayland
