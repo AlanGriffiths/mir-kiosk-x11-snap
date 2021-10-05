@@ -7,9 +7,16 @@ then
   exit 1
 fi
 
-real_wayland=$(dirname "${XDG_RUNTIME_DIR}")/${WAYLAND_DISPLAY:-wayland-0}
+real_xdg_runtime_dir=$(dirname "${XDG_RUNTIME_DIR}")
+real_wayland=${real_xdg_runtime_dir}/${WAYLAND_DISPLAY:-wayland-0}
 
-while [ ! -O "${real_wayland}" ]
+# On core systems may need to wait for real XDG_RUNTIME_DIR
+until [ -O "${real_xdg_runtime_dir}" ]
+do
+  inotifywait --event create "$(dirname "${real_xdg_runtime_dir}")"
+done
+
+until [ -O "${real_wayland}" ]
 do
   inotifywait --event create $(dirname "${real_wayland}")
 done
