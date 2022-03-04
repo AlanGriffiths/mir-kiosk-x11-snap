@@ -11,15 +11,11 @@ architectures:
   - build-on: arm64
   - build-on: armhf
 
-parts:
-  ppa-setup:
-    plugin: nil
-    override-pull: |
-      sudo apt --assume-yes install software-properties-common
-      sudo add-apt-repository -y ppa:mir-team/release
-      sudo apt install --assume-yes libmiral-dev
-      snapcraftctl pull
+package-repositories:
+  - type: apt
+    ppa: mir-team/release
 
+parts:
   recipe-version:
     plugin: nil
     source: .
@@ -30,7 +26,7 @@ parts:
       - -recipe-version
 
   mir-kiosk-x11:
-    after: [recipe-version, ppa-setup]
+    after: [recipe-version]
     plugin: cmake
     source: src
     override-pull: |
