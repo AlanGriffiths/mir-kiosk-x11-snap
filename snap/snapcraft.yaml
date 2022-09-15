@@ -42,7 +42,7 @@ parts:
       - g++
     stage-packages:
       - inotify-tools
-      - libmiral4
+      - libmiral5
       - mir-platform-graphics-wayland
       - dmz-cursor-theme
       - fonts-freefont-ttf
